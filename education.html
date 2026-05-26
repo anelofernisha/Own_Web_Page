@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My education</title>
+
+    <style>
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #5e548e;
+            margin-bottom: 20px;
+        }
+
+        #educationText {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.7;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            min-height: 120px;
+        }
+
+        /* When editing */
+        #educationText.editing {
+            border: 2px dashed #b388eb;
+            background: #faf7ff;
+        }
+
+        button {
+
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+            margin-right: 10px;
+
+        }
+
+        #editBtn {
+            background: linear-gradient(to right, #7f7fd5, #86a8e7);
+        }
+
+        #saveBtn {
+            background: linear-gradient(to right, #11998e, #38ef7d);
+            display: none;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: linear-gradient(to right, #a18cd1, #fbc2eb);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>MY EDUCATION</h1>
+
+        <p id="educationText"></p>
+
+        <!-- Buttons -->
+        <button id="editBtn">Edit</button>
+        <button id="saveBtn">Save</button>
+
+        <br>
+
+        <a href="/">Back to Home</a>
+
+    </div>
+
+    <script>
+
+        const educationText = document.getElementById("educationText");
+
+        const editBtn = document.getElementById("editBtn");
+
+        const saveBtn = document.getElementById("saveBtn");
+
+        // Load saved text
+        educationText.innerHTML =
+
+            localStorage.getItem("educationData")
+
+            ||
+
+            `I am currently studying in the 12th standard at a Government Girls Higher Secondary School, where I have chosen the Computer Science group. I have a strong interest in computers and technology, and I enjoy learning about programming and how software works. This subject helps me improve my knowledge and develop important skills that will be useful for my future. By studying Computer Science, I am building a solid foundation for my goal of working in the IT field and becoming a successful developer.`;
+
+
+        // Edit button
+        editBtn.addEventListener("click", () => {
+
+            educationText.contentEditable = true;
+
+            educationText.focus();
+
+            educationText.classList.add("editing");
+
+            editBtn.style.display = "none";
+
+            saveBtn.style.display = "inline-block";
+
+        });
+
+
+        // Save button
+        saveBtn.addEventListener("click", () => {
+
+            localStorage.setItem(
+                "educationData",
+                educationText.innerHTML
+            );
+
+            educationText.contentEditable = false;
+
+            educationText.classList.remove("editing");
+
+            saveBtn.style.display = "none";
+
+            editBtn.style.display = "inline-block";
+
+            alert("Education details saved successfully!");
+
+        });
+
+    </script>
+
+</body>
+</html>
