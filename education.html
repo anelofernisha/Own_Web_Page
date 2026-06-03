@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My education</title>
+    <title>My Education</title>
 
     <style>
 
@@ -34,6 +34,7 @@
             border-radius: 10px;
             border: 2px solid transparent;
             min-height: 120px;
+            white-space: pre-line;
         }
 
         /* When editing */
@@ -43,7 +44,6 @@
         }
 
         button {
-
             margin-top: 20px;
             padding: 12px 25px;
             border: none;
@@ -53,7 +53,6 @@
             font-size: 16px;
             transition: 0.3s;
             margin-right: 10px;
-
         }
 
         #editBtn {
@@ -95,7 +94,6 @@
 
         <p id="educationText"></p>
 
-        <!-- Buttons -->
         <button id="editBtn">Edit</button>
         <button id="saveBtn">Save</button>
 
@@ -108,47 +106,47 @@
     <script>
 
         const educationText = document.getElementById("educationText");
-
         const editBtn = document.getElementById("editBtn");
-
         const saveBtn = document.getElementById("saveBtn");
 
-        // Load saved text
-       educationText.innerHTML =
-    localStorage.getItem("educationData") || "";
-            
+        // Default education details
+        const defaultEducation = `
+Govt. Girls Hr Sec School - 2026 - 2027 - 12th Finished
+Govt. Girls Hr Sec School - 2025 - 2026 - 11th Finished
+Govt. Girls Hr Sec School - 2024 - 2025 - 10th Finished
+Govt. Girls Hr Sec School - 2019 - 2024 - 6th to 9th Finished
+EG Matric Hr Sec School - 2013 - 2019 - Kindergarten
+        `;
 
+        // Load saved data or default data
+        educationText.innerText =
+            localStorage.getItem("educationData") || defaultEducation;
 
         // Edit button
         editBtn.addEventListener("click", () => {
 
             educationText.contentEditable = true;
-
             educationText.focus();
 
             educationText.classList.add("editing");
 
             editBtn.style.display = "none";
-
             saveBtn.style.display = "inline-block";
 
         });
-
 
         // Save button
         saveBtn.addEventListener("click", () => {
 
             localStorage.setItem(
                 "educationData",
-                educationText.innerHTML
+                educationText.innerText
             );
 
             educationText.contentEditable = false;
-
             educationText.classList.remove("editing");
 
             saveBtn.style.display = "none";
-
             editBtn.style.display = "inline-block";
 
             alert("Education details saved successfully!");
