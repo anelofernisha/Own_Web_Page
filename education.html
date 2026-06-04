@@ -29,16 +29,15 @@
         #educationText {
             color: #555;
             font-size: 18px;
-            line-height: 1.8;
+            line-height: 1.7;
             padding: 15px;
             border-radius: 10px;
             border: 2px solid transparent;
-            min-height: 150px;
-            text-align: left;
+            min-height: 120px;
             white-space: pre-line;
         }
 
-        /* While Editing */
+        /* When editing */
         #educationText.editing {
             border: 2px dashed #b388eb;
             background: #faf7ff;
@@ -111,17 +110,15 @@
         const saveBtn = document.getElementById("saveBtn");
 
         // Default education details
-        const defaultEducation = `Govt. Girls Hr Sec School - 2026 - 2027 - 12th Finished
-
+        const defaultEducation = `
+Govt. Girls Hr Sec School - 2026 - 2027 - 12th Finished
 Govt. Girls Hr Sec School - 2025 - 2026 - 11th Finished
-
 Govt. Girls Hr Sec School - 2024 - 2025 - 10th Finished
-
 Govt. Girls Hr Sec School - 2019 - 2024 - 6th to 9th Finished
+EG Matric Hr Sec School - 2013 - 2019 - Kinder Garden
+        `;
 
-EG Matric Hr Sec School - 2013 - 2019 - Kindergarten`;
-
-        // Load saved data
+        // Load saved data or default data
         educationText.innerText =
             localStorage.getItem("educationData") || defaultEducation;
 
@@ -147,7 +144,6 @@ EG Matric Hr Sec School - 2013 - 2019 - Kindergarten`;
             );
 
             educationText.contentEditable = false;
-
             educationText.classList.remove("editing");
 
             saveBtn.style.display = "none";
